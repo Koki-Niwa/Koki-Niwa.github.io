@@ -18,7 +18,7 @@ function HomepageHeader() {
             </Heading>
             <img
               className="hero-seal-img"
-              src="/img/seal-custom-transparent.png"
+              src="/img/seal-cutout.png"
               alt="Koki Blog 印章"
             />
           </div>
