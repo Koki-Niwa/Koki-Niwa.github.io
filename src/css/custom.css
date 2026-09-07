@@ -201,13 +201,13 @@
 
 /* 印章装饰 - 真实篆刻印章图片 */
 .hero-seal-img {
-  width: 54px;
+  width: 46px;
   height: auto;
-  margin-top: 0.2rem;
+  margin-top: 1rem;
   margin-left: 0.35rem;
   flex-shrink: 0;
   align-self: flex-start;
-  filter: drop-shadow(0 2px 6px rgba(180, 30, 30, 0.3));
+  filter: drop-shadow(0 2px 5px rgba(180, 30, 30, 0.3));
   transition: transform 0.3s ease;
   transform: rotate(-2deg);
   user-select: none;
