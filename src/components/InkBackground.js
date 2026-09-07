@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
  * 水墨风鼠标跟随动态背景
  * - 白底 + 固定淡墨装饰
  * - 鼠标移动时生成墨滴扩散效果
+ * - 事件监听在 window 上，避免被内容层拦截
  */
 export default function InkBackground() {
   const canvasRef = useRef(null);
@@ -26,7 +27,7 @@ export default function InkBackground() {
     const drops = [];
     // 鼠标轨迹点
     const trail = [];
-    const maxTrail = 8;
+    const maxTrail = 10;
 
     // 固定背景装饰（大淡墨圆）
     const decorations = [
@@ -41,11 +42,11 @@ export default function InkBackground() {
       const rect = container.getBoundingClientRect();
       width = rect.width;
       height = rect.height;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+      canvas.width = Math.max(1, width * dpr);
+      canvas.height = Math.max(1, height * dpr);
       canvas.style.width = width + 'px';
       canvas.style.height = height + 'px';
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
     function drawDecorations() {
@@ -68,9 +69,9 @@ export default function InkBackground() {
       for (let i = 1; i < trail.length; i++) {
         const p = trail[i];
         const prev = trail[i - 1];
-        const alpha = (i / trail.length) * 0.15;
+        const alpha = (i / trail.length) * 0.12;
         ctx.strokeStyle = `rgba(44, 62, 80, ${alpha})`;
-        ctx.lineWidth = (i / trail.length) * 6;
+        ctx.lineWidth = (i / trail.length) * 5;
         ctx.lineCap = 'round';
         ctx.beginPath();
         ctx.moveTo(prev.x, prev.y);
@@ -90,7 +91,6 @@ export default function InkBackground() {
           continue;
         }
 
-        // 墨滴：中心深，边缘淡，模拟水墨晕染
         const gradient = ctx.createRadialGradient(d.x, d.y, 0, d.x, d.y, d.radius);
         gradient.addColorStop(0, `rgba(44, 62, 80, ${d.opacity * 0.6})`);
         gradient.addColorStop(0.4, `rgba(44, 62, 80, ${d.opacity * 0.3})`);
@@ -101,8 +101,7 @@ export default function InkBackground() {
         ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
         ctx.fill();
 
-        // 墨滴边缘的深色环
-        ctx.strokeStyle = `rgba(44, 62, 80, ${d.opacity * 0.25})`;
+        ctx.strokeStyle = `rgba(44, 62, 80, ${d.opacity * 0.2})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.radius * 0.85, 0, Math.PI * 2);
@@ -124,59 +123,78 @@ export default function InkBackground() {
         y,
         radius: 2,
         maxRadius: 40 + Math.random() * 60 * size,
-        opacity: 0.25 + Math.random() * 0.15,
-        speed: 0.8 + Math.random() * 0.6,
-        fade: 0.004 + Math.random() * 0.003,
+        opacity: 0.22 + Math.random() * 0.12,
+        speed: 0.7 + Math.random() * 0.5,
+        fade: 0.0035 + Math.random() * 0.0025,
       });
-      // 限制数量
-      if (drops.length > 30) drops.shift();
+      if (drops.length > 50) drops.shift();
+    }
+
+    // 判断鼠标是否在 Hero 区域内
+    function isInHero(clientX, clientY) {
+      const rect = container.getBoundingClientRect();
+      return (
+        clientX >= rect.left &&
+        clientX <= rect.right &&
+        clientY >= rect.top &&
+        clientY <= rect.bottom
+      );
+    }
+
+    function getCanvasPos(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top,
+      };
     }
 
     let lastDropTime = 0;
     function handleMouseMove(e) {
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      if (!isInHero(e.clientX, e.clientY)) return;
 
-      // 更新轨迹
+      const { x, y } = getCanvasPos(e.clientX, e.clientY);
+
       trail.push({ x, y });
       if (trail.length > maxTrail) trail.shift();
 
-      // 限流生成墨滴
       const now = Date.now();
-      if (now - lastDropTime > 40) {
+      if (now - lastDropTime > 35) {
         addDrop(x, y, 0.7);
         lastDropTime = now;
       }
     }
 
     function handleClick(e) {
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      // 点击时生成大墨滴
+      if (!isInHero(e.clientX, e.clientY)) return;
+
+      const { x, y } = getCanvasPos(e.clientX, e.clientY);
       addDrop(x, y, 2);
       addDrop(x + (Math.random() - 0.5) * 30, y + (Math.random() - 0.5) * 30, 1.2);
       addDrop(x + (Math.random() - 0.5) * 40, y + (Math.random() - 0.5) * 40, 0.8);
     }
 
     function handleMouseLeave() {
-      trail.length = 0;
+      // 延迟清空轨迹，让墨迹自然消散
+      setTimeout(() => {
+        trail.length = 0;
+      }, 500);
     }
 
     resize();
     animate();
 
+    // 事件监听加到 window 上，避免被内容层拦截
     window.addEventListener('resize', resize);
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('click', handleClick);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('click', handleClick, { passive: true });
     container.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resize);
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('click', handleClick);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('click', handleClick);
       container.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
@@ -191,7 +209,7 @@ export default function InkBackground() {
         width: '100%',
         height: '100%',
         overflow: 'hidden',
-        pointerEvents: 'auto',
+        pointerEvents: 'none',
         zIndex: 1,
       }}
     >

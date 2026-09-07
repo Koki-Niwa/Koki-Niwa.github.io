@@ -199,34 +199,16 @@
   flex-wrap: wrap;
 }
 
-/* 印章装饰 */
-.hero-seal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  background: #b33a3a;
-  color: #fff;
-  font-size: 0.7rem;
-  font-weight: 700;
-  line-height: 1.2;
-  border-radius: 4px;
-  margin-top: 0.5rem;
-  box-shadow: 0 2px 8px rgba(179, 58, 58, 0.3);
-  letter-spacing: 1px;
+/* 印章装饰 - SVG 篆体印泥 */
+.hero-seal-svg {
+  margin-top: 0.4rem;
   flex-shrink: 0;
-  transform: rotate(-3deg);
+  filter: drop-shadow(0 2px 6px rgba(139, 37, 0, 0.25));
+  transition: transform 0.3s ease;
 }
 
-.hero-seal span:first-child {
-  font-size: 0.75rem;
-}
-
-.hero-seal span:last-child {
-  font-size: 0.65rem;
-  opacity: 0.9;
+.hero-seal-svg:hover {
+  transform: scale(1.05) rotate(1deg);
 }
 
 /* 水墨主题按钮 */
@@ -240,58 +222,58 @@
   border: 1.5px solid transparent;
 }
 
-/* 主按钮：浓墨 */
-.hero .button--ink-primary {
-  background: #1a1a1a;
-  color: #f5f0e8;
-  border-color: #1a1a1a;
+/* 主按钮：浓墨 - 提高优先级覆盖默认样式 */
+.hero .button.button--ink-primary {
+  background: #1a1a1a !important;
+  color: #f5f0e8 !important;
+  border-color: #1a1a1a !important;
 }
 
-.hero .button--ink-primary:hover {
-  background: #2c3e50;
-  border-color: #2c3e50;
-  color: #fff;
+.hero .button.button--ink-primary:hover {
+  background: #3a3a3a !important;
+  border-color: #3a3a3a !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 26, 26, 0.3);
+}
+
+[data-theme='dark'] .hero .button.button--ink-primary {
+  background: #f5f0e8 !important;
+  color: #1a1a1a !important;
+  border-color: #f5f0e8 !important;
+}
+
+[data-theme='dark'] .hero .button.button--ink-primary:hover {
+  background: #fff !important;
+  border-color: #fff !important;
+  color: #1a1a1a !important;
+}
+
+/* 次按钮：宣纸 + 墨边 */
+.hero .button.button--ink-secondary {
+  background: rgba(245, 240, 232, 0.7) !important;
+  color: #1a1a1a !important;
+  border-color: #1a1a1a !important;
+}
+
+.hero .button.button--ink-secondary:hover {
+  background: #1a1a1a !important;
+  color: #f5f0e8 !important;
+  border-color: #1a1a1a !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(26, 26, 26, 0.25);
 }
 
-[data-theme='dark'] .hero .button--ink-primary {
-  background: #f5f0e8;
-  color: #1a1a1a;
-  border-color: #f5f0e8;
+[data-theme='dark'] .hero .button.button--ink-secondary {
+  background: rgba(26, 26, 26, 0.7) !important;
+  color: #f5f0e8 !important;
+  border-color: #f5f0e8 !important;
 }
 
-[data-theme='dark'] .hero .button--ink-primary:hover {
-  background: #fff;
-  border-color: #fff;
-  color: #1a1a1a;
-}
-
-/* 次按钮：宣纸 + 墨边 */
-.hero .button--ink-secondary {
-  background: rgba(245, 240, 232, 0.6);
-  color: #1a1a1a;
-  border-color: #1a1a1a;
-}
-
-.hero .button--ink-secondary:hover {
-  background: #1a1a1a;
-  color: #f5f0e8;
-  border-color: #1a1a1a;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(26, 26, 26, 0.2);
-}
-
-[data-theme='dark'] .hero .button--ink-secondary {
-  background: rgba(26, 26, 26, 0.6);
-  color: #f5f0e8;
-  border-color: #f5f0e8;
-}
-
-[data-theme='dark'] .hero .button--ink-secondary:hover {
-  background: #f5f0e8;
-  color: #1a1a1a;
-  border-color: #f5f0e8;
+[data-theme='dark'] .hero .button.button--ink-secondary:hover {
+  background: #f5f0e8 !important;
+  color: #1a1a1a !important;
+  border-color: #f5f0e8 !important;
 }
 
 /* ========== Feature 卡片 ========== */
@@ -315,13 +297,14 @@
   width: 48px;
   height: 48px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--ifm-color-primary-light), var(--ifm-color-primary));
+  background: linear-gradient(135deg, #4a4a4a 0%, #2c2c2c 50%, #1a1a1a 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1.25rem;
-  color: white;
+  color: #f5f0e8;
   font-size: 1.4rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .feature-card__title {
