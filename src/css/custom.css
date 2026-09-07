@@ -181,18 +181,18 @@
 .hero__subtitle::before {
   content: '';
   position: absolute;
-  left: -0.75rem;
+  left: -1.75rem;
   top: 50%;
   width: 0.5rem;
   height: 1px;
   background: #5a6c7d;
 }
 
-/* 右侧装饰线：与左侧对称，与文字间留小空隙 */
+/* 右侧装饰线：与左侧对称，与文字间留约一个字的空隙 */
 .hero__subtitle::after {
   content: '';
   position: absolute;
-  right: -0.3rem;
+  right: -1.3rem;
   top: 50%;
   width: 0.5rem;
   height: 1px;
