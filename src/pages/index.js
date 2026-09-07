@@ -11,9 +11,9 @@ import Translate from '@docusaurus/Translate';
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   const { colorMode } = useColorMode();
-  // 日间：镂空版（红色调淡）；黑夜：白色不透明版
+  // 日间：镂空版；黑夜：用户提供的纯白字版本
   const sealImgPath = colorMode === 'dark'
-    ? '/img/seal-custom-transparent.png'
+    ? '/img/seal-dark.png'
     : '/img/seal-cutout.png';
   const sealImgUrl = useBaseUrl(sealImgPath);
   return (
