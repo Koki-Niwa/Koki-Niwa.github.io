@@ -18,17 +18,27 @@ function HomepageHeader() {
             </Heading>
             <svg className="hero-seal-svg" viewBox="0 0 64 64" width="62" height="62">
               <defs>
-                {/* 印泥斑驳纹理 */}
-                <filter id="sealInk" x="-10%" y="-10%" width="120%" height="120%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.04 0.04" numOctaves="5" seed="7" result="noise" />
-                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" result="displaced" />
-                  <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" seed="3" result="grain" />
-                  <feComposite in="displaced" in2="grain" operator="arithmetic" k1="0" k2="1" k3="0.15" k4="0" />
-                </filter>
                 {/* 边缘毛边滤镜 */}
                 <filter id="sealEdge" x="-15%" y="-15%" width="130%" height="130%">
                   <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="4" seed="11" result="edgeNoise" />
                   <feDisplacementMap in="SourceGraphic" in2="edgeNoise" scale="3.5" xChannelSelector="R" yChannelSelector="G" />
+                </filter>
+                {/* 人形处理：去白底 + 变白色（白文） */}
+                <filter id="runnerWhite" x="-10%" y="-10%" width="120%" height="120%">
+                  {/* 去白色背景：亮度高于阈值变透明 */}
+                  <feComponentTransfer>
+                    <feFuncA type="linear" slope="-10" intercept="9.2" />
+                  </feComponentTransfer>
+                  {/* 把深色人形变成宣纸白 */}
+                  <feColorMatrix type="matrix" values="
+                    0 0 0 0 0.96
+                    0 0 0 0 0.93
+                    0 0 0 0 0.88
+                    0 0 0 1 0
+                  " />
+                  {/* 加斑驳 */}
+                  <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="5" result="grain" />
+                  <feComposite in2="grain" operator="arithmetic" k1="0" k2="1" k3="0.12" k4="0" />
                 </filter>
                 {/* 中国红渐变 */}
                 <linearGradient id="sealRed" x1="15%" y1="10%" x2="85%" y2="90%">
@@ -47,37 +57,27 @@ function HomepageHeader() {
 
               {/* 印章主体 - 不规则随形章 */}
               <g filter="url(#sealEdge)" transform="rotate(-4 32 32)">
-                {/* 不规则印章轮廓 - 像随形石章 */}
                 <path
                   d="M 10 6 Q 6 5 7 10 L 6 18 Q 5 22 7 26 L 5 34 Q 4 38 6 42 L 7 50 Q 8 56 14 57 L 22 58 Q 26 59 30 57 L 38 58 Q 42 59 46 57 L 52 56 Q 58 55 57 49 L 58 40 Q 59 36 57 32 L 58 24 Q 59 20 57 16 L 56 9 Q 55 4 49 5 L 40 6 Q 36 5 32 7 L 24 6 Q 20 5 16 7 Z"
                   fill="url(#sealRed)"
                 />
-                {/* 印泥颗粒 */}
                 <path
                   d="M 10 6 Q 6 5 7 10 L 6 18 Q 5 22 7 26 L 5 34 Q 4 38 6 42 L 7 50 Q 8 56 14 57 L 22 58 Q 26 59 30 57 L 38 58 Q 42 59 46 57 L 52 56 Q 58 55 57 49 L 58 40 Q 59 36 57 32 L 58 24 Q 59 20 57 16 L 56 9 Q 55 4 49 5 L 40 6 Q 36 5 32 7 L 24 6 Q 20 5 16 7 Z"
                   fill="url(#inkGrain)"
                 />
               </g>
 
-              {/* 内部舞动的人形 - K 字母变形 */}
-              <g filter="url(#sealInk)" transform="rotate(-4 32 32)">
-                <g fill="#fff5ee" stroke="#fff5ee" strokeWidth="0.5" strokeLinejoin="round">
-                  {/* 头部 */}
-                  <circle cx="32" cy="16" r="4.5" />
-                  {/* 身体主干（K 的竖线） */}
-                  <path d="M 32 20 L 30 36 L 31 48" stroke="#fff5ee" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-                  {/* 左臂 - 向上扬起（舞动） */}
-                  <path d="M 31 27 L 20 19" stroke="#fff5ee" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-                  {/* 右臂 - 更高扬起（舞动的动感） */}
-                  <path d="M 31 25 L 44 16" stroke="#fff5ee" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-                  {/* 左腿 */}
-                  <path d="M 31 42 L 22 52" stroke="#fff5ee" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-                  {/* 右腿 - 向前迈出（奔跑感） */}
-                  <path d="M 31 42 L 42 50" stroke="#fff5ee" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-                  {/* 飘动的衣袖/丝带 - 增加动感 */}
-                  <path d="M 20 19 Q 16 22 18 26" stroke="#fff5ee" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.8" />
-                  <path d="M 44 16 Q 48 18 47 23" stroke="#fff5ee" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.8" />
-                </g>
+              {/* 内部奔跑人形 - 白文 */}
+              <g transform="rotate(-4 32 32)">
+                <image
+                  href="/img/seal-runner.png"
+                  x="11"
+                  y="9"
+                  width="42"
+                  height="42"
+                  filter="url(#runnerWhite)"
+                  preserveAspectRatio="xMidYMid meet"
+                />
               </g>
 
               {/* 高光 - 模拟印泥光泽 */}
