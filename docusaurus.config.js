@@ -7,7 +7,7 @@ import path from 'path';
 const config = {
   title: 'Koki Blog',
   tagline: '学习记录',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo.svg',
 
   future: {
     v4: true,

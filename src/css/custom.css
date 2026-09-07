@@ -525,94 +525,219 @@ thead th {
   background: var(--ifm-color-primary-light);
 }
 
-/* ========== 搜索框美化 ========== */
+/* ========== 搜索框美化（水墨风简洁版） ========== */
 /* 导航栏搜索按钮 */
-.ds-search-button {
-  border-radius: 10px !important;
-  border: 1px solid var(--ifm-color-emphasis-200) !important;
-  background: var(--ifm-color-emphasis-50) !important;
-  padding: 6px 14px !important;
-  min-width: 200px;
-  transition: all 0.2s ease !important;
+.aa-DetachedSearchButton {
+  border-radius: 20px !important;
+  border: 1px solid transparent !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+  padding: 6px 16px !important;
+  min-width: 180px;
+  transition: all 0.25s ease !important;
   box-shadow: none !important;
+  color: var(--ifm-color-emphasis-600) !important;
+  cursor: pointer !important;
 }
 
-.ds-search-button:hover {
-  border-color: var(--ifm-color-primary-light) !important;
-  background: var(--ifm-color-emphasis-100) !important;
-  box-shadow: 0 2px 8px rgba(91, 123, 154, 0.1) !important;
+.aa-DetachedSearchButton:hover {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  background: rgba(0, 0, 0, 0.07) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
 }
 
-.ds-search-button .ds-search-button-prompt {
-  color: var(--ifm-color-emphasis-500);
-  font-size: 0.85rem;
+.aa-DetachedSearchButtonPlaceholder {
+  color: var(--ifm-color-emphasis-500) !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+}
+
+/* 搜索图标颜色 */
+.aa-DetachedSearchButtonIcon .aa-SubmitIcon {
+  color: var(--ifm-color-emphasis-500) !important;
 }
 
 /* 搜索模态框 */
-.ds-modal {
-  border-radius: 14px !important;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+.aa-Modal {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18) !important;
   border: 1px solid var(--ifm-color-emphasis-100) !important;
+  background: var(--ifm-background-surface-color) !important;
+}
+
+.aa-ModalOverlay {
+  background: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(4px) !important;
 }
 
 /* 搜索输入框 */
-.ds-search-input-wrapper {
+.aa-Form {
   border-bottom: 1px solid var(--ifm-color-emphasis-100) !important;
-  padding: 12px 16px !important;
+  padding: 12px 20px !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
-.ds-search-input {
+.aa-Input {
   font-size: 1rem !important;
   padding: 8px 0 !important;
   border: none !important;
   background: transparent !important;
   outline: none !important;
   box-shadow: none !important;
+  color: var(--ifm-font-color-base) !important;
 }
 
-.ds-search-input:focus {
+.aa-Input:focus {
   border: none !important;
   box-shadow: none !important;
+  outline: none !important;
+}
+
+.aa-Input::placeholder {
+  color: var(--ifm-color-emphasis-400) !important;
+}
+
+/* 覆盖 Algolia 默认紫色主题色 */
+.aa-Autocomplete,
+.aa-DetachedSearchButton,
+.aa-Modal,
+.aa-Form {
+  --aa-primary-color: #1c1c1c !important;
+  --aa-primary-color-contrast: #ffffff !important;
+  --aa-muted-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 搜索表单 focus 时去掉紫色边框 */
+.aa-Form:focus-within {
+  border-color: var(--ifm-color-emphasis-200) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* 模态框里的搜索图标颜色 */
+.aa-Form .aa-SubmitIcon,
+.aa-Form .aa-InputIcon {
+  color: var(--ifm-color-emphasis-500) !important;
+}
+
+/* 输入框光标颜色 */
+.aa-Input {
+  caret-color: #1c1c1c !important;
+}
+
+/* 取消按钮颜色 */
+.aa-CancelButton {
+  color: var(--ifm-color-emphasis-600) !important;
+}
+
+.aa-CancelButton:hover {
+  color: #1c1c1c !important;
+}
+
+/* 搜索结果高亮文字颜色 */
+.aa-Hit mark {
+  background: rgba(28, 28, 28, 0.1) !important;
+  color: #1c1c1c !important;
 }
 
 /* 搜索结果项 */
-.ds-hit {
-  padding: 10px 16px !important;
-  border-radius: 8px;
-  margin: 2px 8px !important;
-  transition: background-color 0.15s;
+.aa-Hit {
+  padding: 12px 20px !important;
+  border-radius: 10px !important;
+  margin: 4px 12px !important;
+  transition: background-color 0.15s !important;
+  cursor: pointer !important;
 }
 
-.ds-hit:hover,
-.ds-hit-active {
-  background: var(--ifm-color-emphasis-100) !important;
+.aa-Hit:hover,
+.aa-Hit[aria-selected='true'] {
+  background: rgba(0, 0, 0, 0.05) !important;
 }
 
-.ds-hit-title {
-  font-weight: 600 !important;
-  color: var(--ifm-color-primary) !important;
-}
-
-/* 搜索结果分类标签 */
-.ds-hit-section-title {
-  font-size: 0.75rem !important;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+/* 搜索结果分类标题 */
+.aa-SourceHeaderTitle,
+.aa-SectionTitle {
+  font-size: 0.7rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
   color: var(--ifm-color-emphasis-500) !important;
   font-weight: 600 !important;
-  padding: 8px 16px !important;
+  padding: 12px 20px 4px !important;
+}
+
+/* 搜索结果为空 */
+.aa-NoResults {
+  padding: 32px 20px !important;
+  text-align: center !important;
+  color: var(--ifm-color-emphasis-500) !important;
 }
 
 /* 深色模式搜索框适配 */
-[data-theme='dark'] .ds-search-button {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
+[data-theme='dark'] .aa-DetachedSearchButton {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: transparent !important;
+  color: rgba(255, 255, 255, 0.7) !important;
 }
 
-[data-theme='dark'] .ds-search-button:hover {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border-color: var(--ifm-color-primary-dark) !important;
+[data-theme='dark'] .aa-DetachedSearchButton:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme='dark'] .aa-DetachedSearchButtonPlaceholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme='dark'] .aa-DetachedSearchButtonIcon .aa-SubmitIcon {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme='dark'] .aa-Modal {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme='dark'] .aa-Hit:hover,
+[data-theme='dark'] .aa-Hit[aria-selected='true'] {
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* 黑夜模式覆盖 Algolia 紫色主题 */
+[data-theme='dark'] .aa-Autocomplete,
+[data-theme='dark'] .aa-DetachedSearchButton,
+[data-theme='dark'] .aa-Modal,
+[data-theme='dark'] .aa-Form {
+  --aa-primary-color: #e0e0e0 !important;
+  --aa-primary-color-contrast: #1c1c1c !important;
+  --aa-muted-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme='dark'] .aa-Form:focus-within {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme='dark'] .aa-Form .aa-SubmitIcon,
+[data-theme='dark'] .aa-Form .aa-InputIcon {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme='dark'] .aa-Input {
+  caret-color: #e0e0e0 !important;
+}
+
+[data-theme='dark'] .aa-CancelButton {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+[data-theme='dark'] .aa-CancelButton:hover {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .aa-Hit mark {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
 }
 
 /* ========== 响应式 ========== */
