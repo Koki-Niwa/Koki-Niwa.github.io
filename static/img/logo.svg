@@ -1,17 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
-    <linearGradient id="kokiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#7b9bba;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#45607a;stop-opacity:1" />
+    <linearGradient id="inkGrad" x1="20%" y1="10%" x2="80%" y2="90%">
+      <stop offset="0%" style="stop-color:#3d4f5f;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2c3e50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a252f;stop-opacity:1" />
     </linearGradient>
+    <filter id="inkBlur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.3" />
+    </filter>
   </defs>
-  <!-- 背景圆角矩形 -->
-  <rect x="2" y="2" width="60" height="60" rx="14" ry="14" fill="url(#kokiGrad)"/>
-  <!-- 字母 K -->
-  <path d="M22 16 L22 48 M22 32 L38 16 M22 32 L40 48" 
-        stroke="white" 
-        stroke-width="4.5" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"
-        fill="none"/>
+  <!-- 墨滴主体：不规则圆形，模拟水墨晕染 -->
+  <path d="M32 4 C44 4 54 12 56 24 C58 34 54 44 46 52 C38 60 26 62 16 56 C6 50 2 38 6 26 C10 14 20 4 32 4 Z"
+        fill="url(#inkGrad)" filter="url(#inkBlur)"/>
+  <!-- 墨晕外层：淡墨扩散 -->
+  <path d="M32 8 C42 8 50 15 52 25 C54 34 50 43 43 50 C36 57 26 58 18 53 C10 48 6 38 9 28 C12 18 22 8 32 8 Z"
+        fill="none" stroke="#5b7b9a" stroke-width="0.8" opacity="0.4"/>
+  <!-- K 字母：白色，笔画末端略带笔触 -->
+  <g fill="white">
+    <!-- K 的竖 -->
+    <rect x="20" y="16" width="4.5" height="32" rx="1.5"/>
+    <!-- K 的右上斜 -->
+    <path d="M26 28 L42 16 L44 19 L29 31 Z"/>
+    <!-- K 的右下斜 -->
+    <path d="M26 33 L44 48 L42 51 L25 36 Z"/>
+  </g>
+  <!-- 墨点装饰 -->
+  <circle cx="48" cy="14" r="1.5" fill="#2c3e50" opacity="0.6"/>
+  <circle cx="14" cy="50" r="1" fill="#2c3e50" opacity="0.4"/>
 </svg>

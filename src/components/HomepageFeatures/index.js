@@ -3,9 +3,20 @@ import Heading from '@theme/Heading';
 
 const features = [
   {
-    title: '前端开发',
-    desc: 'HTML、CSS、JavaScript、React、Vue、TypeScript、工程化等前端技术的系统学习笔记。',
-    link: '/docs/frontend/intro',
+    title: 'Agent',
+    desc: 'AI Agent 架构、工具调用、多 Agent 协作、RAG、推理优化等前沿技术的学习与实践。',
+    link: '/docs/agent/intro',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M12 1v6m0 10v6m11-11h-6M7 12H1m15.5-7.5l-4.24 4.24m-6.52 6.52l-4.24 4.24m0-15l4.24 4.24m6.52 6.52l4.24 4.24"></path>
+      </svg>
+    ),
+  },
+  {
+    title: '编译器',
+    desc: '从词法分析、语法分析、IR 优化到代码生成，深入理解编译器原理并动手实现。',
+    link: '/docs/compiler/intro',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="16 18 22 12 16 6"></polyline>
@@ -14,24 +25,15 @@ const features = [
     ),
   },
   {
-    title: '后端开发',
-    desc: 'Node.js、Python、数据库、API 设计、微服务架构等后端技术的实践与总结。',
-    link: '/docs/backend/intro',
+    title: 'AI Infra',
+    desc: '推理优化、分布式训练、GPU 编程、模型服务，大模型时代的基础设施全栈学习。',
+    link: '/docs/ai-infra/intro',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-      </svg>
-    ),
-  },
-  {
-    title: '工具与效率',
-    desc: 'VS Code、Git、Docker、终端配置、AI 辅助编程等提升开发效率的工具和技巧。',
-    link: '/docs/tools/intro',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+        <line x1="6" y1="6" x2="6.01" y2="6"></line>
+        <line x1="6" y1="18" x2="6.01" y2="18"></line>
       </svg>
     ),
   },

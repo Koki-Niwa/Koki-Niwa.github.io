@@ -6,7 +6,7 @@ import path from 'path';
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Koki Blog',
-  tagline: '记录技术学习的每一步',
+  tagline: '学习记录',
   favicon: 'img/favicon.ico',
 
   future: {
@@ -121,21 +121,21 @@ const config = {
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'frontendSidebar',
+            sidebarId: 'agentSidebar',
             position: 'left',
-            label: '前端',
+            label: 'Agent',
           },
           {
             type: 'docSidebar',
-            sidebarId: 'backendSidebar',
+            sidebarId: 'compilerSidebar',
             position: 'left',
-            label: '后端',
+            label: '编译器',
           },
           {
             type: 'docSidebar',
-            sidebarId: 'toolsSidebar',
+            sidebarId: 'aiinfraSidebar',
             position: 'left',
-            label: '工具',
+            label: 'AI Infra',
           },
           { to: '/blog', label: '博客', position: 'left' },
           // 私有笔记仅本地显示
@@ -160,9 +160,9 @@ const config = {
           {
             title: '内容',
             items: [
-              { label: '前端', to: '/docs/frontend/intro' },
-              { label: '后端', to: '/docs/backend/intro' },
-              { label: '工具', to: '/docs/tools/intro' },
+              { label: 'Agent', to: '/docs/agent/intro' },
+              { label: '编译器', to: '/docs/compiler/intro' },
+              { label: 'AI Infra', to: '/docs/ai-infra/intro' },
               { label: '博客', to: '/blog' },
             ],
           },
