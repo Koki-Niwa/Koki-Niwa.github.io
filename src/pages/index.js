@@ -10,7 +10,7 @@ function HomepageHeader() {
   return (
     <header className="hero hero--ink">
       <InkBackground />
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
         </Heading>

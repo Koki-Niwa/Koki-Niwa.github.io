@@ -192,7 +192,7 @@ export default function InkBackground() {
         height: '100%',
         overflow: 'hidden',
         pointerEvents: 'auto',
-        zIndex: 0,
+        zIndex: 1,
       }}
     >
       <canvas

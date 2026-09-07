@@ -84,20 +84,49 @@
   background-color: var(--ifm-color-primary);
 }
 
-/* ========== 首页 Hero 区（水墨风白底） ========== */
+/* ========== 首页 Hero 区（水墨背景图 + 动效） ========== */
 .hero {
-  background: #ffffff;
+  background: #f8f9fb url('/img/hero-bg.jpg') center bottom / cover no-repeat;
   padding: 5rem 0;
   position: relative;
   overflow: hidden;
 }
 
+/* 半透明白色遮罩，确保文字清晰，同时保留背景图美感 */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(248, 249, 251, 0.82) 0%,
+    rgba(248, 249, 251, 0.55) 40%,
+    rgba(248, 249, 251, 0.45) 70%,
+    rgba(248, 249, 251, 0.7) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
 [data-theme='dark'] .hero {
-  background: #1a1f2e;
+  background: #1a1f2e url('/img/hero-bg.jpg') center bottom / cover no-repeat;
+}
+
+[data-theme='dark'] .hero::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 31, 46, 0.85) 0%,
+    rgba(26, 31, 46, 0.65) 40%,
+    rgba(26, 31, 46, 0.55) 70%,
+    rgba(26, 31, 46, 0.75) 100%
+  );
 }
 
 .hero--ink {
-  min-height: 420px;
+  min-height: 440px;
   display: flex;
   align-items: center;
 }
