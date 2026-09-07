@@ -1,0 +1,10 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.draftsSidebar.category.私有笔记": {
+    "message": "私有笔记",
+    "description": "The label for category '私有笔记' in sidebar 'draftsSidebar'"
+  }
+}

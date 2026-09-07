@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "Koki Blog",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Koki Blog Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Agent": {
+    "message": "Agent",
+    "description": "Navbar item with label Agent"
+  },
+  "item.label.编译器": {
+    "message": "Compiler",
+    "description": "Navbar item with label 编译器"
+  },
+  "item.label.AI Infra": {
+    "message": "AI Infra",
+    "description": "Navbar item with label AI Infra"
+  },
+  "item.label.博客": {
+    "message": "Blog",
+    "description": "Navbar item with label 博客"
+  },
+  "item.label.私有笔记": {
+    "message": "Private Notes",
+    "description": "Navbar item with label 私有笔记"
+  }
+}

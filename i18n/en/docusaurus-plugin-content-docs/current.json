@@ -1,0 +1,18 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.agentSidebar.category.Agent": {
+    "message": "Agent",
+    "description": "The label for category 'Agent' in sidebar 'agentSidebar'"
+  },
+  "sidebar.compilerSidebar.category.编译器": {
+    "message": "Compiler",
+    "description": "The label for category '编译器' in sidebar 'compilerSidebar'"
+  },
+  "sidebar.aiinfraSidebar.category.AI Infra": {
+    "message": "AI Infra",
+    "description": "The label for category 'AI Infra' in sidebar 'aiinfraSidebar'"
+  }
+}

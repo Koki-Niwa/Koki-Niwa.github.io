@@ -1,0 +1,38 @@
+{
+  "link.title.内容": {
+    "message": "Content",
+    "description": "The title of the footer links column with title=内容 in the footer"
+  },
+  "link.title.链接": {
+    "message": "Links",
+    "description": "The title of the footer links column with title=链接 in the footer"
+  },
+  "link.item.label.Agent": {
+    "message": "Agent",
+    "description": "The label of footer link with label=Agent linking to /docs/agent/intro"
+  },
+  "link.item.label.编译器": {
+    "message": "Compiler",
+    "description": "The label of footer link with label=编译器 linking to /docs/compiler/intro"
+  },
+  "link.item.label.AI Infra": {
+    "message": "AI Infra",
+    "description": "The label of footer link with label=AI Infra linking to /docs/ai-infra/intro"
+  },
+  "link.item.label.博客": {
+    "message": "Blog",
+    "description": "The label of footer link with label=博客 linking to /blog"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/Koki-Niwa"
+  },
+  "link.item.label.RSS": {
+    "message": "RSS",
+    "description": "The label of footer link with label=RSS linking to /blog/rss.xml"
+  },
+  "copyright": {
+    "message": "Copyright © 2026 Koki Blog. Built with Docusaurus.",
+    "description": "The footer copyright"
+  }
+}
