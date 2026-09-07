@@ -345,5 +345,35 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "homepage.tagline": {
+    "message": "Learning Log",
+    "description": "The tagline below the site title"
+  },
+  "homepage.button.docs": {
+    "message": "Docs",
+    "description": "Primary button linking to documentation"
+  },
+  "homepage.button.blog": {
+    "message": "Blog",
+    "description": "Secondary button linking to blog"
+  },
+  "homepage.feature.agent.title": {
+    "message": "Agent"
+  },
+  "homepage.feature.agent.desc": {
+    "message": "Learning and practicing cutting-edge AI Agent technologies: agent architecture, tool calling, multi-agent collaboration, RAG, and reasoning optimization."
+  },
+  "homepage.feature.compiler.title": {
+    "message": "Compiler"
+  },
+  "homepage.feature.compiler.desc": {
+    "message": "From lexing, parsing, IR optimization to code generation — deeply understanding compiler theory through hands-on implementation."
+  },
+  "homepage.feature.aiinfra.title": {
+    "message": "AI Infra"
+  },
+  "homepage.feature.aiinfra.desc": {
+    "message": "Full-stack learning of LLM-era infrastructure: inference optimization, distributed training, GPU programming, and model serving."
   }
 }

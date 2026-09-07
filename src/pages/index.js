@@ -1,12 +1,15 @@
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import InkBackground from '@site/src/components/InkBackground.js';
 import Heading from '@theme/Heading';
+import Translate from '@docusaurus/Translate';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
+  const sealImgUrl = useBaseUrl('/img/seal-cutout.png');
   return (
     <header className="hero hero--ink">
       <InkBackground />
@@ -18,17 +21,25 @@ function HomepageHeader() {
             </Heading>
             <img
               className="hero-seal-img"
-              src="/img/seal-cutout.png"
-              alt="Koki Blog 印章"
+              src={sealImgUrl}
+              alt="Koki Blog seal"
             />
           </div>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <p className="hero__subtitle">
+            <Translate id="homepage.tagline" description="The tagline below the site title">
+              学习记录
+            </Translate>
+          </p>
           <div className="hero-buttons">
             <Link className="button button--ink-primary button--lg" to="/docs/agent/intro">
-              文档
+              <Translate id="homepage.button.docs" description="Primary button linking to documentation">
+                文档
+              </Translate>
             </Link>
             <Link className="button button--ink-secondary button--lg" to="/blog">
-              博客
+              <Translate id="homepage.button.blog" description="Secondary button linking to blog">
+                博客
+              </Translate>
             </Link>
           </div>
         </div>

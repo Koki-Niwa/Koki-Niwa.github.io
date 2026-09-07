@@ -1,10 +1,11 @@
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
+import Translate from '@docusaurus/Translate';
 
 const features = [
   {
-    title: 'Agent',
-    desc: 'AI Agent 架构、工具调用、多 Agent 协作、RAG、推理优化等前沿技术的学习与实践。',
+    title: <Translate id="homepage.feature.agent.title">Agent</Translate>,
+    desc: <Translate id="homepage.feature.agent.desc">AI Agent 架构、工具调用、多 Agent 协作、RAG、推理优化等前沿技术的学习与实践。</Translate>,
     link: '/docs/agent/intro',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -22,8 +23,8 @@ const features = [
     ),
   },
   {
-    title: '编译器',
-    desc: '从词法分析、语法分析、IR 优化到代码生成，深入理解编译器原理并动手实现。',
+    title: <Translate id="homepage.feature.compiler.title">编译器</Translate>,
+    desc: <Translate id="homepage.feature.compiler.desc">从词法分析、语法分析、IR 优化到代码生成，深入理解编译器原理并动手实现。</Translate>,
     link: '/docs/compiler/intro',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -33,8 +34,8 @@ const features = [
     ),
   },
   {
-    title: 'AI Infra',
-    desc: '推理优化、分布式训练、GPU 编程、模型服务，大模型时代的基础设施全栈学习。',
+    title: <Translate id="homepage.feature.aiinfra.title">AI Infra</Translate>,
+    desc: <Translate id="homepage.feature.aiinfra.desc">推理优化、分布式训练、GPU 编程、模型服务，大模型时代的基础设施全栈学习。</Translate>,
     link: '/docs/ai-infra/intro',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
