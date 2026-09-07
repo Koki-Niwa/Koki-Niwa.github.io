@@ -12,15 +12,21 @@ function HomepageHeader() {
       <InkBackground />
       <div className="container hero-content" style={{ position: 'relative', zIndex: 2 }}>
         <div className="hero-text-block">
-          <Heading as="h1" className="hero__title">
-            {siteConfig.title}
-          </Heading>
+          <div className="hero-title-row">
+            <Heading as="h1" className="hero__title">
+              {siteConfig.title}
+            </Heading>
+            <div className="hero-seal">
+              <span>Koki</span>
+              <span>之印</span>
+            </div>
+          </div>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
           <div className="hero-buttons">
-            <Link className="button button--primary button--lg" to="/docs/agent/intro">
+            <Link className="button button--ink-primary button--lg" to="/docs/agent/intro">
               文档
             </Link>
-            <Link className="button button--secondary button--lg" to="/blog">
+            <Link className="button button--ink-secondary button--lg" to="/blog">
               博客
             </Link>
           </div>

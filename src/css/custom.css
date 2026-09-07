@@ -131,69 +131,167 @@
   align-items: center;
 }
 
+/* 错落有致的书法章法布局 */
 .hero-content {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 4rem;
 }
 
 .hero-text-block {
-  text-align: center;
-  max-width: 700px;
+  text-align: left;
+  max-width: 620px;
+  padding-top: 1rem;
+}
+
+.hero-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 0.25rem;
 }
 
 .hero__title {
-  font-size: 3.8rem;
+  font-size: 4.2rem;
   font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 0.5rem;
-  color: var(--ifm-heading-color);
-  line-height: 1.1;
+  letter-spacing: -2px;
+  margin: 0;
+  color: #1a1a1a;
+  line-height: 1.05;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+[data-theme='dark'] .hero__title {
+  color: #f0f0f0;
+}
+
+/* 副标题：错落感，向右缩进，小字淡墨 */
 .hero__subtitle {
-  font-size: 1.5rem;
-  color: var(--ifm-color-primary);
-  font-weight: 600;
-  margin: 0 0 2rem 0;
-  line-height: 1.4;
-  letter-spacing: 2px;
+  font-size: 1.15rem;
+  color: #5a6c7d;
+  font-weight: 400;
+  margin: 0 0 2.5rem 3.5rem;
+  line-height: 1.6;
+  letter-spacing: 6px;
+  position: relative;
 }
 
+.hero__subtitle::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 50%;
+  width: 1rem;
+  height: 1px;
+  background: #5a6c7d;
+}
+
+[data-theme='dark'] .hero__subtitle {
+  color: #8a9bab;
+}
+
+/* 按钮：错落排列，第一个偏左，第二个稍偏右 */
 .hero-buttons {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
+  gap: 1.25rem;
+  justify-content: flex-start;
+  margin-left: 1rem;
   flex-wrap: wrap;
 }
 
+/* 印章装饰 */
+.hero-seal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: #b33a3a;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px rgba(179, 58, 58, 0.3);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  transform: rotate(-3deg);
+}
+
+.hero-seal span:first-child {
+  font-size: 0.75rem;
+}
+
+.hero-seal span:last-child {
+  font-size: 0.65rem;
+  opacity: 0.9;
+}
+
+/* 水墨主题按钮 */
 .hero .button {
   font-weight: 600;
-  padding: 0.75rem 2rem;
-  border-radius: 8px;
-  transition: all 0.25s ease;
+  padding: 0.7rem 2.2rem;
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  border: 1.5px solid transparent;
 }
 
-.hero .button--primary {
-  background: var(--ifm-color-primary);
-  border: none;
+/* 主按钮：浓墨 */
+.hero .button--ink-primary {
+  background: #1a1a1a;
+  color: #f5f0e8;
+  border-color: #1a1a1a;
 }
 
-.hero .button--primary:hover {
-  background: var(--ifm-color-primary-dark);
+.hero .button--ink-primary:hover {
+  background: #2c3e50;
+  border-color: #2c3e50;
+  color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(91, 123, 154, 0.35);
+  box-shadow: 0 6px 20px rgba(26, 26, 26, 0.25);
 }
 
-.hero .button--secondary {
-  border: 1.5px solid var(--ifm-color-primary);
-  color: var(--ifm-color-primary);
-  background: transparent;
+[data-theme='dark'] .hero .button--ink-primary {
+  background: #f5f0e8;
+  color: #1a1a1a;
+  border-color: #f5f0e8;
 }
 
-.hero .button--secondary:hover {
-  background: var(--ifm-color-primary);
-  color: white;
+[data-theme='dark'] .hero .button--ink-primary:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #1a1a1a;
+}
+
+/* 次按钮：宣纸 + 墨边 */
+.hero .button--ink-secondary {
+  background: rgba(245, 240, 232, 0.6);
+  color: #1a1a1a;
+  border-color: #1a1a1a;
+}
+
+.hero .button--ink-secondary:hover {
+  background: #1a1a1a;
+  color: #f5f0e8;
+  border-color: #1a1a1a;
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 26, 26, 0.2);
+}
+
+[data-theme='dark'] .hero .button--ink-secondary {
+  background: rgba(26, 26, 26, 0.6);
+  color: #f5f0e8;
+  border-color: #f5f0e8;
+}
+
+[data-theme='dark'] .hero .button--ink-secondary:hover {
+  background: #f5f0e8;
+  color: #1a1a1a;
+  border-color: #f5f0e8;
 }
 
 /* ========== Feature 卡片 ========== */
