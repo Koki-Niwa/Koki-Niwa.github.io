@@ -168,6 +168,7 @@
 
 /* 副标题：错落感，向右缩进，小字淡墨 */
 .hero__subtitle {
+  display: inline-block;
   font-size: 1.15rem;
   color: #5a6c7d;
   font-weight: 400;
@@ -180,20 +181,20 @@
 .hero__subtitle::before {
   content: '';
   position: absolute;
-  left: -0.55rem;
+  left: -0.6rem;
   top: 50%;
-  width: 0.7rem;
+  width: 0.5rem;
   height: 1px;
   background: #5a6c7d;
 }
 
-/* 右侧装饰线：与左侧对称（letter-spacing 导致需更负值才贴紧） */
+/* 右侧装饰线：与左侧对称（inline-block 下元素宽度含 letter-spacing） */
 .hero__subtitle::after {
   content: '';
   position: absolute;
-  right: -0.45rem;
+  right: -0.15rem;
   top: 50%;
-  width: 0.7rem;
+  width: 0.5rem;
   height: 1px;
   background: #5a6c7d;
 }
