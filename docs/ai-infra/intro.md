@@ -16,5 +16,7 @@ title: AI Infra
 - **存储与网络**：RDMA、NVLink、对象存储、Checkpoint 管理
 
 :::tip 工欲善其事，必先利其器
+
 AI Infra 是大模型时代的核心竞争力，这里的笔记聚焦原理与实战。
+
 :::

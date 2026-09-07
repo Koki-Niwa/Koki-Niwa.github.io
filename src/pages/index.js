@@ -10,18 +10,20 @@ function HomepageHeader() {
   return (
     <header className="hero hero--ink">
       <InkBackground />
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link className="button button--primary button--lg" to="/docs/agent/intro">
-            文档
-          </Link>
-          <Link className="button button--secondary button--lg" to="/blog">
-            博客
-          </Link>
+      <div className="container hero-content" style={{ position: 'relative', zIndex: 2 }}>
+        <div className="hero-text-block">
+          <Heading as="h1" className="hero__title">
+            {siteConfig.title}
+          </Heading>
+          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <div className="hero-buttons">
+            <Link className="button button--primary button--lg" to="/docs/agent/intro">
+              文档
+            </Link>
+            <Link className="button button--secondary button--lg" to="/blog">
+              博客
+            </Link>
+          </div>
         </div>
       </div>
     </header>
@@ -33,7 +35,7 @@ export default function Home() {
   return (
     <Layout
       title={siteConfig.title}
-      description="Koki Blog - 记录技术学习的每一步。前端、后端、工具效率的学习笔记与心得。">
+      description="Koki Blog - 学习记录。Agent、编译器、AI Infra 的技术学习笔记。">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
