@@ -54,9 +54,9 @@ export default function InkBackground() {
         const x = d.x * width;
         const y = d.y * height;
         const gradient = ctx.createRadialGradient(x, y, 0, x, y, d.r);
-        gradient.addColorStop(0, `rgba(44, 62, 80, ${d.opacity})`);
-        gradient.addColorStop(0.6, `rgba(44, 62, 80, ${d.opacity * 0.5})`);
-        gradient.addColorStop(1, 'rgba(44, 62, 80, 0)');
+        gradient.addColorStop(0, `rgba(28, 28, 28, ${d.opacity})`);
+        gradient.addColorStop(0.6, `rgba(28, 28, 28, ${d.opacity * 0.5})`);
+        gradient.addColorStop(1, 'rgba(28, 28, 28, 0)');
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(x, y, d.r, 0, Math.PI * 2);
@@ -70,7 +70,7 @@ export default function InkBackground() {
         const p = trail[i];
         const prev = trail[i - 1];
         const alpha = (i / trail.length) * 0.12;
-        ctx.strokeStyle = `rgba(44, 62, 80, ${alpha})`;
+        ctx.strokeStyle = `rgba(28, 28, 28, ${alpha})`;
         ctx.lineWidth = (i / trail.length) * 5;
         ctx.lineCap = 'round';
         ctx.beginPath();
@@ -92,16 +92,16 @@ export default function InkBackground() {
         }
 
         const gradient = ctx.createRadialGradient(d.x, d.y, 0, d.x, d.y, d.radius);
-        gradient.addColorStop(0, `rgba(44, 62, 80, ${d.opacity * 0.6})`);
-        gradient.addColorStop(0.4, `rgba(44, 62, 80, ${d.opacity * 0.3})`);
-        gradient.addColorStop(0.8, `rgba(44, 62, 80, ${d.opacity * 0.1})`);
-        gradient.addColorStop(1, 'rgba(44, 62, 80, 0)');
+        gradient.addColorStop(0, `rgba(28, 28, 28, ${d.opacity * 0.6})`);
+        gradient.addColorStop(0.4, `rgba(28, 28, 28, ${d.opacity * 0.3})`);
+        gradient.addColorStop(0.8, `rgba(28, 28, 28, ${d.opacity * 0.1})`);
+        gradient.addColorStop(1, 'rgba(28, 28, 28, 0)');
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.strokeStyle = `rgba(44, 62, 80, ${d.opacity * 0.2})`;
+        ctx.strokeStyle = `rgba(28, 28, 28, ${d.opacity * 0.2})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.arc(d.x, d.y, d.radius * 0.85, 0, Math.PI * 2);
@@ -151,7 +151,11 @@ export default function InkBackground() {
 
     let lastDropTime = 0;
     function handleMouseMove(e) {
-      if (!isInHero(e.clientX, e.clientY)) return;
+      if (!isInHero(e.clientX, e.clientY)) {
+        // 鼠标离开 Hero 区域，立即清空轨迹，避免残留划痕
+        if (trail.length > 0) trail.length = 0;
+        return;
+      }
 
       const { x, y } = getCanvasPos(e.clientX, e.clientY);
 
