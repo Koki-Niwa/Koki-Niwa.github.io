@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useColorMode } from '@docusaurus/theme-common';
+import React, { useEffect, useState } from 'react';
 
 // Giscus 评论配置
 // 使用前请先到 https://giscus.app 配置，获取 repoId 和 categoryId
@@ -15,14 +14,37 @@ const giscusConfig = {
   lang: 'zh-CN',
 };
 
+function getCurrentTheme() {
+  if (typeof document === 'undefined') return 'light';
+  return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+}
+
 export default function GiscusComponent() {
-  const { colorMode } = useColorMode();
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     // 如果未配置 repoId 和 categoryId，不渲染评论
     if (!giscusConfig.repoId || !giscusConfig.categoryId) {
       return;
     }
+
+    // 初始主题
+    setTheme(getCurrentTheme());
+
+    // 监听主题变化
+    const observer = new MutationObserver(() => {
+      setTheme(getCurrentTheme());
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!giscusConfig.repoId || !giscusConfig.categoryId) return;
 
     const script = document.createElement('script');
     script.src = 'https://giscus.app/client.js';
@@ -36,24 +58,18 @@ export default function GiscusComponent() {
     script.setAttribute('data-reactions-enabled', giscusConfig.reactionsEnabled);
     script.setAttribute('data-emit-metadata', giscusConfig.emitMetadata);
     script.setAttribute('data-input-position', giscusConfig.inputPosition);
-    script.setAttribute('data-theme', colorMode === 'dark' ? 'dark' : 'light');
+    script.setAttribute('data-theme', theme);
     script.setAttribute('data-lang', giscusConfig.lang);
     script.setAttribute('data-loading', 'lazy');
 
-    const giscusContainer = document.getElementById('giscus-container');
-    if (giscusContainer) {
-      giscusContainer.innerHTML = '';
-      giscusContainer.appendChild(script);
+    const container = document.getElementById('giscus-container');
+    if (container) {
+      container.innerHTML = '';
+      container.appendChild(script);
     }
+  }, [theme]);
 
-    return () => {
-      if (giscusContainer) {
-        giscusContainer.innerHTML = '';
-      }
-    };
-  }, [colorMode]);
-
-  // 未配置时显示提示
+  // 未配置时不显示
   if (!giscusConfig.repoId || !giscusConfig.categoryId) {
     return null;
   }

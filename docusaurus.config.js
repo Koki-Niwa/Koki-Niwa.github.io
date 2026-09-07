@@ -64,9 +64,9 @@ const config = {
             xslt: true,
           },
           editUrl: 'https://github.com/Koki-Niwa/Koki-Niwa.github.io/tree/main/',
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
+          onInlineTags: 'ignore',
+          onInlineAuthors: 'ignore',
+          onUntruncatedBlogPosts: 'ignore',
         },
         theme: {
           customCss: './src/css/custom.css',
