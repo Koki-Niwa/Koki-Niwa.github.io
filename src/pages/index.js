@@ -18,27 +18,32 @@ function HomepageHeader() {
             </Heading>
             <svg className="hero-seal-svg" viewBox="0 0 64 64" width="62" height="62">
               <defs>
-                {/* 边缘毛边滤镜 */}
-                <filter id="sealEdge" x="-15%" y="-15%" width="130%" height="130%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="4" seed="11" result="edgeNoise" />
-                  <feDisplacementMap in="SourceGraphic" in2="edgeNoise" scale="3.5" xChannelSelector="R" yChannelSelector="G" />
+                {/* 边缘毛边滤镜 - 增强效果 */}
+                <filter id="sealEdge" x="-20%" y="-20%" width="140%" height="140%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.05 0.08" numOctaves="5" seed="11" result="edgeNoise" />
+                  <feDisplacementMap in="SourceGraphic" in2="edgeNoise" scale="6" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+                  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="grain" />
+                  <feComposite in="displaced" in2="grain" operator="arithmetic" k1="0" k2="1" k3="0.08" k4="0" />
                 </filter>
                 {/* 人形处理：去白底 + 变白色（白文） */}
                 <filter id="runnerWhite" x="-10%" y="-10%" width="120%" height="120%">
-                  {/* 去白色背景：亮度高于阈值变透明 */}
-                  <feComponentTransfer>
-                    <feFuncA type="linear" slope="-10" intercept="9.2" />
-                  </feComponentTransfer>
-                  {/* 把深色人形变成宣纸白 */}
+                  {/* 第一步：亮度转 alpha - 暗的地方不透明，亮的地方透明（阈值约0.55，保留灰色头部） */}
+                  <feColorMatrix type="matrix" values="
+                    0 0 0 0 0
+                    0 0 0 0 0
+                    0 0 0 0 0
+                    -0.7 -0.7 -0.7 0 2.1
+                  " result="keyed" />
+                  {/* 第二步：把人形颜色变成宣纸白 */}
                   <feColorMatrix type="matrix" values="
                     0 0 0 0 0.96
                     0 0 0 0 0.93
                     0 0 0 0 0.88
                     0 0 0 1 0
-                  " />
-                  {/* 加斑驳 */}
-                  <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" seed="5" result="grain" />
-                  <feComposite in2="grain" operator="arithmetic" k1="0" k2="1" k3="0.12" k4="0" />
+                  " result="whitened" />
+                  {/* 第三步：加斑驳纹理 */}
+                  <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="5" result="grain" />
+                  <feComposite in="whitened" in2="grain" operator="arithmetic" k1="0" k2="1" k3="0.1" k4="0" />
                 </filter>
                 {/* 中国红渐变 */}
                 <linearGradient id="sealRed" x1="15%" y1="10%" x2="85%" y2="90%">
@@ -71,10 +76,10 @@ function HomepageHeader() {
               <g transform="rotate(-4 32 32)">
                 <image
                   href="/img/seal-runner.png"
-                  x="11"
-                  y="9"
-                  width="42"
-                  height="42"
+                  x="8"
+                  y="6"
+                  width="48"
+                  height="48"
                   filter="url(#runnerWhite)"
                   preserveAspectRatio="xMidYMid meet"
                 />
