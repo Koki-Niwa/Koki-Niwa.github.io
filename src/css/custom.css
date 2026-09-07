@@ -199,18 +199,22 @@
   flex-wrap: wrap;
 }
 
-/* 印章装饰 - 中国印风格 */
-.hero-seal-svg {
-  margin-top: 0.2rem;
-  margin-left: 0.5rem;
+/* 印章装饰 - 真实篆刻印章图片 */
+.hero-seal-img {
+  width: 68px;
+  height: auto;
+  margin-top: 0.1rem;
+  margin-left: 0.4rem;
   flex-shrink: 0;
-  filter: drop-shadow(0 3px 8px rgba(216, 0, 0, 0.3));
-  transition: transform 0.3s ease;
   align-self: flex-start;
+  filter: drop-shadow(0 3px 8px rgba(180, 30, 30, 0.35));
+  transition: transform 0.3s ease;
+  transform: rotate(-2deg);
+  user-select: none;
 }
 
-.hero-seal-svg:hover {
-  transform: scale(1.08) rotate(2deg);
+.hero-seal-img:hover {
+  transform: scale(1.08) rotate(1deg);
 }
 
 /* 水墨主题按钮 */
