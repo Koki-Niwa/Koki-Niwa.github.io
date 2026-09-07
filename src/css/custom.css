@@ -200,12 +200,12 @@
 }
 
 [data-theme='dark'] .hero__subtitle {
-  color: #8a9bab;
+  color: #c8d4e0;
 }
 
 [data-theme='dark'] .hero__subtitle::before,
 [data-theme='dark'] .hero__subtitle::after {
-  background: #8a9bab;
+  background: #c8d4e0;
 }
 
 /* 按钮：错落排列，第一个偏左，第二个稍偏右 */
