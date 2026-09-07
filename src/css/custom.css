@@ -199,16 +199,18 @@
   flex-wrap: wrap;
 }
 
-/* 印章装饰 - SVG 篆体印泥 */
+/* 印章装饰 - 中国印风格 */
 .hero-seal-svg {
-  margin-top: 0.4rem;
+  margin-top: 0.2rem;
+  margin-left: 0.5rem;
   flex-shrink: 0;
-  filter: drop-shadow(0 2px 6px rgba(139, 37, 0, 0.25));
+  filter: drop-shadow(0 3px 8px rgba(216, 0, 0, 0.3));
   transition: transform 0.3s ease;
+  align-self: flex-start;
 }
 
 .hero-seal-svg:hover {
-  transform: scale(1.05) rotate(1deg);
+  transform: scale(1.08) rotate(2deg);
 }
 
 /* 水墨主题按钮 */
