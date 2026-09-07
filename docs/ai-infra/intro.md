@@ -15,7 +15,7 @@ title: AI Infra
 - **模型服务**：Ray Serve、KServe、负载均衡、自动扩缩容
 - **存储与网络**：RDMA、NVLink、对象存储、Checkpoint 管理
 
-:::tip 工欲善其事，必先利其器
+:::tip[工欲善其事，必先利其器]
 
 AI Infra 是大模型时代的核心竞争力，这里的笔记聚焦原理与实战。
 
