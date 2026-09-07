@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="kokiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7b9bba;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#45607a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- 背景圆角矩形 -->
+  <rect x="2" y="2" width="60" height="60" rx="14" ry="14" fill="url(#kokiGrad)"/>
+  <!-- 字母 K -->
+  <path d="M22 16 L22 48 M22 32 L38 16 M22 32 L40 48" 
+        stroke="white" 
+        stroke-width="4.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        fill="none"/>
+</svg>
