@@ -1,6 +1,7 @@
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import { useColorMode } from '@docusaurus/theme-common';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import InkBackground from '@site/src/components/InkBackground.js';
@@ -9,7 +10,12 @@ import Translate from '@docusaurus/Translate';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
-  const sealImgUrl = useBaseUrl('/img/seal-cutout.png');
+  const { colorMode } = useColorMode();
+  // 日间：镂空版（红色调淡）；黑夜：白色不透明版
+  const sealImgPath = colorMode === 'dark'
+    ? '/img/seal-custom-transparent.png'
+    : '/img/seal-cutout.png';
+  const sealImgUrl = useBaseUrl(sealImgPath);
   return (
     <header className="hero hero--ink">
       <InkBackground />

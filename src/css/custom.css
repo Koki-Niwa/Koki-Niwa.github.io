@@ -180,34 +180,31 @@
 .hero__subtitle::before {
   content: '';
   position: absolute;
-  left: -1.5rem;
+  left: -1.1rem;
   top: 50%;
-  width: 1rem;
+  width: 0.8rem;
   height: 1px;
   background: #5a6c7d;
 }
 
-/* 右侧装饰线：稍短、稍淡，左实右虚，错落有致 */
+/* 右侧装饰线：与左侧对称 */
 .hero__subtitle::after {
   content: '';
   position: absolute;
-  right: -1.2rem;
+  right: -1.1rem;
   top: 50%;
-  width: 0.6rem;
+  width: 0.8rem;
   height: 1px;
-  background: rgba(90, 108, 125, 0.45);
+  background: #5a6c7d;
 }
 
 [data-theme='dark'] .hero__subtitle {
   color: #8a9bab;
 }
 
-[data-theme='dark'] .hero__subtitle::before {
-  background: #8a9bab;
-}
-
+[data-theme='dark'] .hero__subtitle::before,
 [data-theme='dark'] .hero__subtitle::after {
-  background: rgba(138, 155, 171, 0.4);
+  background: #8a9bab;
 }
 
 /* 按钮：错落排列，第一个偏左，第二个稍偏右 */
@@ -227,10 +224,15 @@
   margin-left: 0.3rem;
   flex-shrink: 0;
   align-self: flex-start;
-  filter: drop-shadow(0 2px 4px rgba(180, 30, 30, 0.3));
+  filter: saturate(0.72) opacity(0.9) drop-shadow(0 2px 4px rgba(180, 30, 30, 0.25));
   transition: transform 0.3s ease;
   transform: rotate(-2deg);
   user-select: none;
+}
+
+/* 黑夜模式：印章保持原色，白色不透明，阴影更立体 */
+[data-theme='dark'] .hero-seal-img {
+  filter: drop-shadow(0 2px 8px rgba(180, 30, 30, 0.5));
 }
 
 .hero-seal-img:hover {
